@@ -10,6 +10,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   MealItem({
     @required this.id,
@@ -18,10 +19,11 @@ class MealItem extends StatelessWidget {
     @required this.affordability,
     @required this.complexity,
     @required this.duration,
+    @required this.removeItem,
   });
 
   String get complexityText {
-    switch(complexity) {
+    switch (complexity) {
       case Complexity.Simple:
         return 'Simple';
       case Complexity.Challenging:
@@ -34,7 +36,7 @@ class MealItem extends StatelessWidget {
   }
 
   String get affordabilityText {
-    switch(affordability) {
+    switch (affordability) {
       case Affordability.Affordable:
         return 'Affordable';
       case Affordability.Pricey:
@@ -47,7 +49,14 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailsScreen.routeName, arguments: id);
+    Navigator.of(context)
+        .pushNamed(MealDetailsScreen.routeName, arguments: id)
+    // then is not called when pushNamed is finished, it's called when details page is popped
+        .then((result) {
+          if (result != null) {
+            removeItem(result);
+          }
+    });
   }
 
   @override
