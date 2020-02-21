@@ -46,11 +46,11 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   // dummy functionality, doesn't bring much value since meals are recreated on category revisit
   // but it's ok to showcase the idea
-  void _removeMeal(String mealId) {
-    setState(() {
-      displayedMeals.removeWhere((meal) => meal.id == mealId);
-    });
-  }
+//  void _removeMeal(String mealId) {
+//    setState(() {
+//      displayedMeals.removeWhere((meal) => meal.id == mealId);
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
             affordability: categoryMeal.affordability,
             duration: categoryMeal.duration,
             imageUrl: categoryMeal.imageUrl,
-            removeItem: _removeMeal,
+//            removeItem: _removeMeal,
           );
         },
         itemCount: displayedMeals.length,
